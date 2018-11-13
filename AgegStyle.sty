@@ -1,0 +1,116 @@
+\ProvidesPackage{AgegStyle}
+\usepackage{amsmath}						% For maths
+\usepackage{array}							% For tables
+\usepackage{color}							% For color outputs
+\usepackage{enumerate}						% For enumeration options
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}					% Font Encoding, pour moins de bêtises
+\usepackage{forloop}						% For For Loops
+\usepackage[a4paper]{geometry}      		% Set thin margins
+\usepackage{graphicx}						% Pour les images
+\usepackage{intcalc}						% For integer computations
+\usepackage{lmodern}						% Fonts, otherwise crappy on faildows
+\usepackage{soulutf8}						% For Highlights
+\usepackage{ulem}							% For Striketrough
+\usepackage{xparse}							% For more versatile functions
+
+%%%
+%	Layout des reglements
+%%%
+\newcounter{reglement}
+\newcounter{addenda}[reglement]
+\newcounter{partie}[reglement]
+\newcounter{article}[partie]
+\newcounter{sousarticle}[article]
+\newcounter{alinea}[article]
+\newcounter{sousalinea}[alinea]
+\newcommand{\reglement}[1]{
+	\agegskip
+	\stepcounter{reglement}
+	\chapter*{Règlement~\thereglement~: #1}
+	\addcontentsline{toc}{chapter}{Règlement~\thereglement~: #1}
+}
+
+
+
+\newcommand{\reglementAbroge}{
+	\stepcounter{reglement}
+	\ifbool{ShowAbrogated}{
+		\agegskip
+		\chapter*{Règlement~\thereglement~ - Règlement abrogé}
+		\newpage
+    }{}
+}
+\newcommand{\addenda}[1]{
+	\stepcounter{addenda}
+	\chapter*{Addenda~\thereglement-\theaddenda.~#1}
+	\addcontentsline{toc}{chapter}{Addenda~\thereglement-\theaddenda.~#1}
+}
+\newcommand{\partie}[1]{
+	\stepcounter{partie}
+	\section{Partie~\Roman{partie}~: #1}
+	%\addcontentsline{toc}{section}{#1}
+}
+\newcommand{\article}[1]{
+	\stepcounter{article}
+	\subsection{Art. \arabic{partie}.\arabic{article}~: #1}
+	%\addcontentsline{toc}{subsection}{#1}
+}
+\newcommand{\sousarticle}[1]{
+	\stepcounter{sousarticle}
+	\subsubsection{Art. \arabic{partie}.\arabic{article}.\arabic{sousarticle}~: #1}
+	\setcounter{alinea}{0}
+}
+\newcommand{\alinea}[1]{
+	\stepcounter{alinea}
+	\paragraph{\alph{alinea})}~#1
+}
+\newcommand{\sousalinea}[1]{
+	\stepcounter{sousalinea}
+	\subparagraph{\roman{sousalinea}}~#1
+}
+\newcommand{\adoption}[2]{
+	\vspace{1em}
+	\par{\textbf{Modifications adoptées en CA le #1, entérinées en AG le #2.}}
+}
+\newcommand{\preambule}[1]{
+	\textbf{Préambule~:}
+	\textit{#1}
+}
+\newcommand{\valeurs}[8]{
+	\begin{tabular}[c]{m{80px}|m{320px}}
+		\hline
+		#1 & #2 \\ \hline
+		#3 & #4 \\ \hline
+		#5 & #6 \\ \hline
+		#7 & #8 \\ \hline
+	\end{tabular}
+}
+
+% Change tracking
+\newcommand{\add}[1]{
+\textcolor{red}{#1}
+}
+\newcommand{\remove}[1]{
+\textcolor{red}{\st{#1}}
+}
+\newcommand{\replace}[2]{
+\remove{#1}~\add{#2}
+}
+
+%%% Formatting Equations display
+\numberwithin{equation}{reglement}
+
+% REGEXes to clean up changes once approved:
+% \replace
+% Search for: \\replace\{([\w\d\s\'\’\,\.\-\(\)]*)\}\{([\w\d\s\'\’\,\.\-\(\)\\]*)\}
+% Replace with:\2
+%
+% \add
+% Search for: \\add\{([\w\d\s\'\’\,\.\-\(\)]*)\}
+% Search for (secondary): \\add\{(\\(?:(?:sous)?alinea|(?:sous)?article)\{[\w\d\s\'\’\,\.\-\(\)]*\})\}
+% Replace with: \1
+%
+% \remove
+% Search for: \\remove\{([\w\d\s\'\’\,\.\+\~\-\(\)\\\/\$]*)\}
+% Replace with: (Nothing)

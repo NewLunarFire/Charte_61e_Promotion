@@ -1,0 +1,122 @@
+\documentclass{article}
+\usepackage{AgegStyle}
+\usepackage[utf8]{inputenc}
+\usepackage{wrapfig}
+\usepackage{graphicx} %permet l'intégration d'images
+\usepackage[a4paper]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} %Font française
+\usepackage[english,francais]{babel} %Utilisation du package babel pour traduction fr
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{gensymb}
+\usepackage{esdiff}
+\usepackage[style=numeric, sorting=none, backend=biber]{biblatex}
+\usepackage{csquotes}
+\usepackage{verbatim}
+\usepackage[export]{adjustbox}
+\usepackage{subcaption}
+\addbibresource{biblio.bib}
+\usepackage{amsmath}
+\usepackage[makeroom]{cancel}
+\usepackage{etex}
+\usepackage{m-pictex,m-ch-en}
+\usepackage{pdflscape}
+\usepackage{multicol}
+\usepackage{wrapfig}
+\addto\captionsfrench{\def\tablename{T\sc ableau}}
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist 
+\usepackage{listings}
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+\renewcommand{\d}{\mathrm{d}}
+\renewcommand{\(}{\left}
+\renewcommand{\)}{\right)}
+\renewcommand{\[}{\left[}
+\renewcommand{\]}{\right]}
+\newgeometry{top=2cm, bottom=2.5cm}
+\def\wl{\par \vspace{\baselineskip}} %Used to skip lines
+\usepackage{soul}
+\usepackage{ulem}
+
+\begin{document}
+\hyphenchar\font=-1
+\begin{titlepage}
+
+\vspace*{4cm}
+\begin{center}
+\huge \textbf{Charte de la 61$^e$ promotion de génie} \\
+\end{center}
+\vspace*{2cm}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=9cm]{LOGO61.png}
+\end{center}
+\end{figure}
+\null
+\vfill
+
+\begin{center}
+\Large
+Faculté de génie \\
+Université de Sherbrooke \\
+En date du 25 octoobre 2018\\
+\end{center}
+\end{titlepage}
+
+\setcounter{page}{1}
+\pagenumbering{roman}
+
+\tableofcontents
+\newpage
+
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%% Commencer le texte ici%%%%%%%%%%%%%%%%%%%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent \textbf{\LARGE{NOTES IMPORTANTES}} \\
+
+\noindent Le genre masculin est employé dans ce document afin d'alléger le texte. Il n'est d'aucune façon discriminatoire. \\
+
+\noindent Les mots référant à des personnes sont censés inclure les individus, sociétés incorporées ou non incorporées, compagnies, corporations, fiducies ainsi que des organisations non incorporées. \\
+
+\noindent Le terme « AG » désigne l’AG des membres de la « 61e promotion de génie de l’Université de Sherbrooke ». \\
+
+\noindent Le terme « promotion » réfère à l’ensemble des étudiants de la 61e promotion.\\
+
+\newpage
+\input{Reglement1}
+\newpage
+\input{Reglement2}
+\newpage
+\input{Reglement3}
+\newpage
+\input{Reglement4}
+\newpage
+\input{Reglement5}
+\newpage
+\input{Reglement6}
+\newpage
+\input{Reglement7}
+\newpage
+\input{Reglement8}
+\newpage
+\input{Reglement9}
+\newpage
+\input{Reglement10}
+\newpage
+\appendix
+\setcounter{secnumdepth}{0}
+{\centering
+\section*{ANNEXES}
+\input{AnnexeA}
+\input{AnnexeB}
+}
+\input{AnnexeC}
+\input{AnnexeD}
+\end{document}
